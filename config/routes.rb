@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
+    get 'items/index'
+    get 'items/new'
+    get 'items/show'
+    get 'items/edit'
   end
   
-  #会員側のルーティング
+  namespace :public do
     root to: 'homes#top'
     get "/about"=>"homes#about", as:"about"
-  #ここまで
+    get 'items/index'
+    get 'items/show'
+  end
   
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
