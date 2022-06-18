@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    root to: 'homes#top'
+  end
+  
+  #会員側のルーティング
+    root to: 'homes#top'
+    get "/about"=>"homes#about", as:"about"
+  #ここまで
+  
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
