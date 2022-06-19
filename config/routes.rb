@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'adresses/index'
-    get 'adresses/edit'
-  end
   namespace :admin do
     root to: 'homes#top'
     resources :items, only: [:new, :create, :index, :show, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :orders, only: [:show, :update]
   end
   
   namespace :public do
@@ -15,7 +12,8 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
     resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdraw]
     resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
-    resources :items, only: [:index, :edit, :create, :update, :destroy]
+    resources :adresses, only: [:index, :edit, :create, :update, :destroy]
+    resources :orders, only: [:new, :confirm, :create, :complete, :index, :show]
   end
   
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
