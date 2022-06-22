@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get "/about"=>"homes#about", as:"about"
     resources :items, only: [:index, :show]
-    resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdraw]
+    resources :customers, only: [:edit, :update, :unsubscribe, :withdraw]
     resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
     resources :adresses, only: [:index, :edit, :create, :update, :destroy]
     resources :orders, only: [:new, :confirm, :create, :complete, :index, :show]
@@ -19,12 +19,12 @@ Rails.application.routes.draw do
   end
   
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-    sessions: "admin/sessions"
+  sessions: "admin/sessions"
   }
   
-  devise_for :customers,skip: [:passwords] ,controllers: {
-    registrations: "public/registrations",
-    sessions: "public/sessions"
+  devise_for :customers,skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
