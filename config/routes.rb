@@ -1,18 +1,5 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'genres/index'
-    get 'genres/edit'
-  end
-  namespace :admin do
-    root to: 'homes#top'
-    resources :items, only: [:new, :create, :index, :show, :edit, :update]
-    resources :customers, only: [:index, :show, :edit, :update]
-    resources :orders, only: [:show, :update]
-    resources :order_details, only: [:update]
-    resources :genres, only: [:index, :create, :edit, :update]
-  end
-  
-  namespace :public do
+  scope module: :public do
     root to: 'homes#top'
     get "/about"=>"homes#about", as:"about"
     resources :items, only: [:index, :show]
@@ -20,6 +7,15 @@ Rails.application.routes.draw do
     resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
     resources :adresses, only: [:index, :edit, :create, :update, :destroy]
     resources :orders, only: [:new, :confirm, :create, :complete, :index, :show]
+  end
+  
+  namespace :admin do
+    root to: 'homes#top'
+    resources :items, only: [:new, :create, :index, :show, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
+    resources :orders, only: [:show, :update]
+    resources :order_details, only: [:update]
+    resources :genres, only: [:index, :create, :edit, :update]
   end
   
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {

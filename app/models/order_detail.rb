@@ -5,4 +5,7 @@ class OrderDetail < ApplicationRecord
         working: 2,
         completed: 3
     }
+    
+    belongs_to :item
+    belongs_to :order
 end
