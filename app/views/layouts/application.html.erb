@@ -2,59 +2,99 @@
 <html>
   <head>
     <title>NaganoCake</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://kit.fontawesome.com/971aec3205.js" crossorigin="anonymous"></script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header>
-      <% if customer_signed_in? %>
-      <li>
-          <%= link_to "マイページ", show_path %>
-        </li>
-        <li>
-          <%= link_to "カート", cart_items_path %>
-        </li>
-        <li>
-          <%= link_to "商品一覧", items_path %>
-        </li>
-        <li>
-          <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-        </li>
-      <% elsif admin_signed_in? %>
-        <li>
-          <%= link_to "商品一覧", admin_items_path %>
-        </li>
-        <li>
-          <%= link_to "会員一覧", admin_customers_path %>
-        </li>
-        <li>
-          <%= link_to "注文一覧", admin_orders_path %>
-        </li>
-        <li>
-          <%= link_to "ジャンル一覧", admin_genres_path %>
-        </li>
-        <li>
-          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to "About", about_path %>
-        </li>
-        <li>
-          <%= link_to "商品一覧", items_path %>
-        </li>
-        <li>
-          <%= link_to "新規登録", new_customer_registration_path %>
-        </li>
-        <li>
-          <%= link_to "ログイン", new_customer_session_path %>
-        </li>
-      <% end %>
+  <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <span>Nagano Cake</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+            <% if customer_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to show_path, class: 'nav-link text-light' do %>
+                    マイページ
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to cart_items_path, class: 'nav-link text-light' do %>
+                    カート
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to items_path, class: 'nav-link text-light' do %>
+                    商品一覧
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-light' do %>
+                    ログアウト
+                  <% end %>
+                </li>
+              <% elsif admin_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to admin_items_path, class: 'nav-link text-light' do %>
+                    商品一覧
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to admin_customers_path, class: 'nav-link text-light' do %>
+                    会員一覧
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to admin_orders_path, class: 'nav-link text-light' do %>
+                    注文一覧
+                  <% end %>
+                </li>
+                 <li class="nav-item">
+                  <%= link_to admin_genres_path, class: 'nav-link text-light' do %>
+                    ジャンル一覧
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-light' do %>
+                    ログアウト
+                  <% end %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to about_path, class: 'nav-link text-light' do %>
+                    About
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to items_path, class: 'nav-link text-light' do %>
+                    商品一覧
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to new_customer_registration_path, class: 'nav-link text-light' do %>
+                    会員登録
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to new_customer_session_path, class: 'nav-link text-light' do %>
+                    ログイン
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
     <%= yield %>
   </body>
