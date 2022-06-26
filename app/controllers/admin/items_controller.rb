@@ -1,5 +1,8 @@
 class Admin::ItemsController < ApplicationController
   def index
+    @item=Item.new
+    @items=Item.all
+    @genre=@item.genre
   end
 
   def new
