@@ -12,12 +12,17 @@ class Admin::ItemsController < ApplicationController
   
   def create
     @item=Item.new(item_params)
-    @item.save
-    redirect_to admin_item_path(@item.id)
+      if @item.save
+        redirect_to admin_item_path(@item.id)
+      else
+        @items=Item.all
+        render :index
+      end
   end
 
   def show
     @item=Item.find(params[:id])
+    @cart_item=CartItem.new
   end
 
   def edit
@@ -35,7 +40,7 @@ class Admin::ItemsController < ApplicationController
   end
   
   private
-  def item_params
-    params.require(:item).permit(:item_image, :name, :introduction, :genre_id, :price, :is_active)  
-  end
+    def item_params
+      params.require(:item).permit(:item_image, :name, :introduction, :genre_id, :price, :is_active)
+    end
 end
