@@ -2,7 +2,7 @@
     <%= form_with model: @address, url: addresses_path, method: :post, local: true do |f| %>
         <div class="form-group">
             <label for="address_postal_code">郵便番号（ハイフンなし）</label>
-               <div class="postal_code"><%= f.text_field :postal_code %></div>
+               <div class="address_postal_code"><%= f.text_field :postal_code %></div>
         </div>
         <div class="form-group">
             <label for="address_address">住所</label>
@@ -37,8 +37,8 @@
                     <td><%= address.address %></td>
                     <td><%= address.name %></td>
                     <td>
-                        <%= link_to "編集する", edit_address_path(address), class:"btn btn-success" %>
-                        <%= link_to "削除する", address_path(address), method: :delete, "data-confirm" => "本当に消しますか？", class:"btn btn-danger" %>
+                        <%= link_to "編集する", edit_address_path(address), class:"btn btn-sm btn-success" %>
+                        <%= link_to "削除する", address_path(address), method: :delete, "data-confirm" => "本当に消しますか？", class:"btn btn-sm btn-danger" %>
                     </td>
                 </tr>
             <% end %>
