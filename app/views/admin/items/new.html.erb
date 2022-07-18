@@ -23,8 +23,14 @@
         <div class="form-group">
             <label for="item_stastus">販売ステータス</label>
                <div class="item_stastus">
-                   <%= f.radio_button :is_active, "true" %>販売中
-                   <%= f.radio_button :is_active, "false" %>販売停止中
+                   <div>
+                       <%= f.radio_button :is_active, "true" %>
+                       <%= f.label :is_active, "販売中" %>
+                   </div>
+                   <div>
+                       <%= f.radio_button :is_active, "false" %>
+                       <%= f.label :is_active, "販売停止中" %>
+                   </div>
                </div>
         </div>
             <%= f.submit '新規登録', class:'btn btn-success' %>
