@@ -1,9 +1,9 @@
 class Public::CartItemsController < ApplicationController
   def index
     @cart_item=CartItem.new
-    @cart_items=current_customer.cart_items
+    @cart_items=current_customer.cart_items.all
     @item=@cart_item.item
-    @total=0
+    @total_price=0
   end
   
   def update
@@ -31,7 +31,7 @@ class Public::CartItemsController < ApplicationController
     	cart_item.amount+=params[:cart_item][:amount].to_i
     	cart_item.save
     	redirect_to cart_items_path
-		elsif @cart_item.save
+		elsif @cart_item.save!
 		  redirect_to cart_items_path
 		else
 		  render :show
