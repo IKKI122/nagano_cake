@@ -1,17 +1,61 @@
-<h2>新着商品</h2>
-  <div class="container">
-    <div class="row">
-    <% @items.each do |item| %>
-      <div class="col-md-3">
-        <div class="card h-100">
-          <%= link_to item_path(item.id),style: "color: black;", data: {"turbolinks" => false} do %>
-            <div class="card-img-top d-block"><%= image_tag item.get_item_image(150,150) %></div>
-            <div class="card-title"><%= item.name %></div>
-            <div class="card-price">¥<%= item.price.to_s(:delimited) %></div>
-          <% end %>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>NaganoCake</title>
+  </head>
+    
+  <body>
+    <style type="text/css">
+        .main-container{
+          margin-bottom: 50px;
+          padding: 50px;
+          margin-left:auto;margin-right:auto;
+          background-image: url(<%= asset_path 'home_image.jpg' %>);
+          width: 600px;
+          height: 400px;
+          background-position: center;
+        }
+        
+        .main-info{
+          background-color: rgba(0,0,0,0.5);
+          text-align: center;
+          padding-bottom: 70px;
+        }
+        
+        p{
+          color: white;
+          padding-top: 100px;
+          font-weight: bold;
+        }
+    </style>
+    
+    <div class="container">
+      <div class="main-container text-center">
+        <div class="main-info">
+         <p>
+          ようこそ、ながのCAKEへ！<br>
+          このサイトは、ケーキ販売のECサイトになります。<br>
+          会員でない方も商品の閲覧はできますが、<br>
+          購入には会員登録が必要になります。
+         </p>
         </div>
+     </div>
+      
+      <h2>新着商品</h2>
+      <div class="row">
+        <% @items.each do |item| %>
+          <div class="col-md-3 mb-3">
+            <div class="card h-100">
+              <%= link_to item_path(item.id),style: "color: black;", data: {"turbolinks" => false} do %>
+                <div class="card-img-top d-block"><%= image_tag item.get_item_image(150,150) %></div>
+                <div class="card-title"><%= item.name %></div>
+                <div class="card-price">¥<%= item.price.to_s(:delimited) %></div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-    <%= link_to "全ての商品を見る>", items_path %>
+      <div class="text-right mt-3"><%= link_to "全ての商品を見る>", items_path %></div>
     </div>
-  </div>
+  </body>
+</html>
