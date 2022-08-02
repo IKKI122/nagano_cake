@@ -12,10 +12,10 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get "/about"=>"homes#about", as:"about"
     resources :items, only: [:index, :show]
-    resources :customers, only: [:edit, :update]
     get '/customers/my_page'=>'customers#show', as:'show'
     get '/customers/unsubscribe/:id'=>'customers#unsubscribe', as:'unsubscribe'
     patch '/customers/withdraw'=>'customers#withdraw', as:'withdraw'
+    resources :customers, only: [:edit, :update]
     delete '/cart_items/destroy_all'=>'cart_items#destroy_all', as:'destroy_all'
     resources :cart_items, only: [:index, :update, :destroy, :create]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
