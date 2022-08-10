@@ -1,7 +1,7 @@
 class Admin::ItemsController < ApplicationController
   def index
     @item=Item.new
-    @items=Item.all
+    @items=Item.page(params[:page]).per(10)
     @genre=@item.genre
   end
 
@@ -16,7 +16,7 @@ class Admin::ItemsController < ApplicationController
         redirect_to admin_item_path(@item.id)
       else
         @items=Item.all
-        render :index
+        redirect_to new_admin_item_path
       end
   end
 

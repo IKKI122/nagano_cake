@@ -1,4 +1,6 @@
 <h2>ショッピングカート</h2>
+    <p id="notice" class="text-success"><%= notice %></p>
+    <p id="alert" class="text-danger"><%= alert %></p>
     <div><%= link_to "カートを空にする", destroy_all_path, method: :delete, "data-confirm" => "本当に消しますか？", class:"btn btn-sm btn-danger" %></div>
     <div class="col-md-8 offset-md-1">
         <table class="table table-bordered">

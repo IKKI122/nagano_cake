@@ -1,4 +1,6 @@
 class Public::OrdersController < ApplicationController
+  before_action :cart_item_check, only: [:new]
+  
   def new
     @order=Order.new
   end
@@ -15,12 +17,17 @@ class Public::OrdersController < ApplicationController
       @order.address=current_customer.address
       @order.name=current_customer.last_name+current_customer.first_name
     elsif params[:order][:select_address]=="1"
-      @address=Address.find(params[:order][:address_id])
-      @order.postal_code=@address.postal_code
-      @order.address=@address.address
-      @order.name=@address.name
+      if current_customer.addresses.blank?
+        flash.now[:alert]="登録済みの住所がありません。"
+        render :new
+      else
+        @address=Address.find(params[:order][:address_id])
+        @order.postal_code=@address.postal_code
+        @order.address=@address.address
+        @order.name=@address.name
+      end
     elsif params[:order][:select_address]=="2"
-      @address=current_customer.addresses.new
+      @address=Address.new
       @address.postal_code=params[:order][:postal_code]
       @address.address=params[:order][:address]
       @address.name=params[:order][:name]
@@ -30,6 +37,7 @@ class Public::OrdersController < ApplicationController
       @order.address=@address.address
       @order.name=@address.name
       else
+        flash.now[:alert]="お届け先を入力してください。"
         render :new
       end
     end
@@ -70,6 +78,14 @@ class Public::OrdersController < ApplicationController
   end
   
   private
+  def cart_item_check
+    my_cart=current_customer.cart_items
+    unless my_cart.exists?
+      flash[:alert]="商品を登録してください。"
+      redirect_to cart_items_path
+    end
+  end
+  
   def order_params
       params.require(:order).permit(:postal_code, :address, :name, :payment_method, :total_payment)
   end

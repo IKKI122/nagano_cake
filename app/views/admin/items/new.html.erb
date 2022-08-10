@@ -1,37 +1,40 @@
-<h2>商品新規登録</h2>
+<div class="container">
+<h2 class="mb-4">商品新規登録</h2>
+    <div class="row justify-content-center">
     <%= form_with model: @item, url: admin_items_path, local: true do |f| %>
-        <div class="form-group">
-            <label for="item_image">商品画像</label>
-            <%= f.file_field :item_image, id:"item_image", placeholder: "ファイルを選択", accept: "image/*", class:"form-control-file item_image" %>
-          </div>
-        <div class="form-group">
-            <label for="item_name">商品名</label>
-               <div class="item_name"><%= f.text_field :name, placeholder: "商品名" %></div>
+        <div class="form_group row mb-3">
+            <label for="item_image" class="col-md-3">商品画像</label>
+            <div class="col-md-9">
+                <%= f.file_field :item_image, id:"item_image", placeholder: "ファイルを選択", accept: "image/*", class:"form-control-file item_image" %>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="item_introduction">商品名</label>
-               <div class="item_introduction"><%= f.text_area :introduction, size: "30x4", placeholder: "ここに説明文を記述します" %></div>
+        <div class="form_group row mb-3">
+            <label for="item_name" class="col-md-3">商品名</label>
+            <div class="item_name col-md-9"><%= f.text_field :name, placeholder: "商品名" %></div>
         </div>
-        <div class="form-group">
-            <label for="item_genre">ジャンル</label>
-               <div class="item_genre"><%= f.collection_select(:genre_id, @genres, :id, :name) %></div>
+        <div class="form_group row mb-3">
+            <label for="item_introduction" class="col-md-3">商品説明</label>
+            <div class="item_introduction col-md-9"><%= f.text_area :introduction, size: "50x4", placeholder: "ここに説明文を記述します" %></div>
         </div>
-        <div class="form-group">
-            <label for="item_price">税抜価格</label>
-               <div class="item_price"><%= f.text_field :price, placeholder: "1000" %>円</div>
+        <div class="form_group row mb-3">
+            <label for="item_genre" class="col-md-3">ジャンル</label>
+            <div class="item_genre col-md-9"><%= f.collection_select(:genre_id, @genres, :id, :name) %></div>
         </div>
-        <div class="form-group">
-            <label for="item_stastus">販売ステータス</label>
-               <div class="item_stastus">
-                   <div>
-                       <%= f.radio_button :is_active, "true" %>
-                       <%= f.label :is_active, "販売中" %>
-                   </div>
-                   <div>
-                       <%= f.radio_button :is_active, "false" %>
-                       <%= f.label :is_active, "販売停止中" %>
-                   </div>
-               </div>
+        <div class="form_group row mb-3">
+            <label for="item_price" class="col-md-3">税抜価格</label>
+            <div class="item_price col-md-9"><%= f.text_field :price, placeholder: "1000" %>円</div>
         </div>
-            <%= f.submit '新規登録', class:'btn btn-success' %>
+        <div class="form_group row mb-3">
+            <label for="item_stastus" class="col-md-3">販売ステータス</label>
+            <div class="item_stastus col-md-9">
+                <%= f.radio_button :is_active, "true" %>
+                <%= f.label :is_active, "販売中" %>
+           
+                <%= f.radio_button :is_active, "false", class:"ml-3" %>
+                <%= f.label :is_active, "販売停止中" %>
+            </div>
+        </div>
+        <div class="text-center mb-4"><%= f.submit '新規登録', class:'btn btn-success' %></div>
     <% end %>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 <h2>注文情報入力</h2>
+    <p id="alert" class="text-danger"><%= alert %></p>
     <%= form_with model: @order, url: confirm_path, method: :post, local: true do |f| %>
         <div class="form-group">
             <label for="order_payment_method">支払方法</label>

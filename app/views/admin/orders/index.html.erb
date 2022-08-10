@@ -1,7 +1,7 @@
 <div class="container">
     <h2>注文履歴一覧</h2>
-    <div class="col-md-10 offset-md-1">
-        <table class="table table-inverse">
+    <div class="row">
+        <table class="table">
             <thead class="table-active">
                 <tr>
                     <th>購入日時</th></th>
@@ -31,5 +31,6 @@
             <% end %>
             </tbody>
         </table>
+        <div class="mx-auto"><%= paginate @orders %></div>
     </div>
 </div>

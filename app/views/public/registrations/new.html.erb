@@ -1,5 +1,5 @@
-<%= notice %>
 <h2>Sign up</h2>
+<p id="alert" class="text-danger"><%= alert %></p>
 <%= form_with model: @customer, url: customer_registration_path, id: 'new_customer', class: 'new_customer', local: true do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
   <div class="field">

@@ -1,7 +1,7 @@
 <div class="container">
 <h2>会員一覧</h2>
-    <div class="col-md-8 offset-md-1">
-        <table class="table table-inverse">
+    <div class="row">
+        <table class="table">
             <thead class="table-active">
                 <tr>
                     <th>会員ID</th>
@@ -22,14 +22,15 @@
                     <td><%= customer.email %></td>
                     <td>
                         <% if customer.is_deleted == false %>
-                            <%= "有効" %>
+                            <div class="text-success font-weight-bold"><%= "有効" %></div>
                         <% else %>
-                            <%= "退会" %>
+                            <div class="text-secondary font-weight-bold"><%= "退会" %></div>
                         <% end %>
                     </td>
                 </tr>
             <% end %>
             </tbody>
         </table>
+        <div class="mx-auto"><%= paginate @customers %></div>
     </div>
 </div>

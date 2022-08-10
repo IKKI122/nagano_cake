@@ -6,13 +6,13 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="application.css"/>
+    <!--link rel="stylesheet" href="app/assets/stylesheets/application.css"-->
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body class="d-flex flex-column vh-100">
-      <header class="d-flex flex-wrap py-3 mb-4 border-bottom">
+      <header class="d-flex flex-wrap py-3 mb-4 border-bottom bg-light">
         <a class="navbar-brand ml-4" href="/"><%= image_tag 'nagano_cake.png', :size =>'100x70' %></a>
         <ul class="nav nav-pills ml-auto">
           <% if customer_signed_in? %>
@@ -92,13 +92,8 @@
     
     <%= yield %>
     
-    <footer class="mt-5 border-top">
-      <div class="container">
-        <div class="row">
-          <div class="mx-auto">
-          </div>
-        </div>
-      </div>
+    <footer class="footer border-top fixed-bottom p-3 bg-light">
+      <p class="text-center text-dark">Nagano Cake</p>
     </footer>
     
   </body>
