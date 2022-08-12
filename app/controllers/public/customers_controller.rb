@@ -13,6 +13,7 @@ class Public::CustomersController < ApplicationController
       flash[:notice]="登録情報を更新しました。"
       redirect_to show_path
     else
+      flash.now[:alert]="情報を入力してください。"
       render :edit
     end
   end

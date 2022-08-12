@@ -1,16 +1,16 @@
-<h2>マイページ</h2>
-  <div class="col-md-8 offset-md-1">
-    <p id="notice" class="text-success"><%= notice %></p>
-    <div>
-        登録情報
-        <%= link_to "編集する", edit_customer_path(@customer.id), class:"btn btn-sm btn-success" %>
+<div class="container">
+  <h2 class="mb-4">マイページ</h2>
+  <p id="notice" class="text-success"><%= notice %></p>  
+    <div class="row">
+      <p class="font-weight-bold col-md-1">登録情報</p>
+      <div class="col-md-3"><%= link_to "編集する", edit_customer_path(@customer.id), class:"btn btn-sm btn-success w-50 font-weight-bold" %></div>
     </div>
     
-    <div>
-      <table class="table-bordered">
+    <div class="row mb-4">
+      <table class="table-bordered col-md-8">
         <tr>
-      	  <td class="table-active">氏名</td>
-      	  <td>
+      	  <td class="table-active", style="width: 30%">氏名</td>
+      	  <td style="width: 70%">
       	      <%= @customer.last_name %>
       	      <%= @customer.first_name %>
       	  </td>
@@ -41,13 +41,14 @@
       </table>
     </div>
     
-    <div>
-        配送先
-        <%= link_to "一覧を見る", addresses_path(@customer.id), class:"btn btn-sm btn-info" %>
+    <div class="row">
+        <p class="font-weight-bold col-md-1">配送先</p>
+        <div class="col-md-3"><%= link_to "一覧を見る", addresses_path(@customer.id), class:"btn btn-sm btn-info w-50 font-weight-bold" %></div>
     </div>
     <div>
-      
-        注文履歴
-        <%= link_to "一覧を見る", orders_path, class:"btn btn-sm btn-info" %>
+    <div class="row">  
+        <p class="font-weight-bold col-md-1">注文履歴</p>
+        <div class="col-md-3"><%= link_to "一覧を見る", orders_path, class:"btn btn-sm btn-info w-50 font-weight-bold" %></div>
     </div>
   </div>
+</div>

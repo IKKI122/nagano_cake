@@ -1,27 +1,35 @@
-<h2>配送先登録／一覧</h2>
+<div class="container">
+<h2 class="mb-5">配送先登録／一覧</h2>
+<p id="alert" class="text-danger"><%= alert %></p>
     <%= form_with model: @address, url: addresses_path, method: :post, local: true do |f| %>
-        <div class="form-group">
-            <label for="address_postal_code">郵便番号（ハイフンなし）</label>
-               <div class="address_postal_code"><%= f.text_field :postal_code %></div>
-        </div>
-        <div class="form-group">
-            <label for="address_address">住所</label>
-               <div class="address_address"><%= f.text_field :address %></div>
-        </div>
-        <div class="form-group">
-            <label for="address_name">宛名</label>
-               <div class="address_name"><%= f.text_field :name %></div>
-        </div>
-        <div>
+         <div>
             <%= f.hidden_field :customer_id, :value => current_customer.id %>
         </div>
-        <div>
-            <%= f.submit '新規登録', class:'btn btn-success' %>
+        <div class="row form-group">
+            <label for="address_postal_code", class="col-md-4">郵便番号（ハイフンなし）</label>
+            <div class="address_postal_code col-md-8">
+                <div class="row"><%= f.text_field :postal_code, class:"col-md-4" %></div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label for="address_address", class="col-md-4">住所</label>
+            <div class="address_address col-md-8">
+                <div class="row"><%= f.text_field :address, class:"col-md-8" %></div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label for="address_name", class="col-md-4">宛名</label>
+            <div class="address_name col-md-8">
+                <div class="row">
+                    <%= f.text_field :name, class:"col-md-4" %>
+                    <%= f.submit '　新規登録　', class:'btn btn-success offset-md-4 font-weight-bold' %>
+                </div>
+            </div>
         </div>
     <% end %>
     
-    <div class="col-md-8 offset-md-1">
-        <table class="table table-bordered">
+    <div class="row mt-5">
+        <table class="table table-bordered col-9">
             <thead class="table-active">
                 <tr>
                     <th>郵便番号</th>
@@ -37,11 +45,12 @@
                     <td><%= address.address %></td>
                     <td><%= address.name %></td>
                     <td>
-                        <%= link_to "編集する", edit_address_path(address), class:"btn btn-sm btn-success" %>
-                        <%= link_to "削除する", address_path(address), method: :delete, "data-confirm" => "本当に消しますか？", class:"btn btn-sm btn-danger" %>
+                        <%= link_to "編集する", edit_address_path(address), class:"btn btn-sm btn-success font-weight-bold" %>
+                        <%= link_to "削除する", address_path(address), method: :delete, "data-confirm" => "本当に消しますか？", class:"btn btn-sm btn-danger font-weight-bold" %>
                     </td>
                 </tr>
             <% end %>
             </tbody>
         </table>
     </div>
+</div>
